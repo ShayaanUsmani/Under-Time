@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Ground
   - Environment
+  - Anchor
+  - EnemyA
+  - EnemyB
+  - EnemyC
   layers:
   - Default
   - TransparentFX
@@ -15,11 +19,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - camChild
+  - Enemy
+  - Player
+  - Environment
+  - Bot
   - 
   - 
   - 

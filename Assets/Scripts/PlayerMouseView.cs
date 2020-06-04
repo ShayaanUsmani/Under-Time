@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerMouseView : MonoBehaviour
 {
-    private float mouseSensitivity = 100f;
+    public static float mouseSensitivity = 10f;
     private float xRot;
+
+    public bool rotBodyWithMouse = true;
 
     public Camera cam;
 
@@ -21,6 +23,7 @@ public class PlayerMouseView : MonoBehaviour
     // Note that when looking up and down, the camera attached on the player moves, not the player
     void Update()
     {
+        Debug.Log(mouseSensitivity);
         float mX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -29,6 +32,13 @@ public class PlayerMouseView : MonoBehaviour
 
         cam.transform.localRotation = Quaternion.Euler(xRot * Vector3.right);
 
-        transform.Rotate(Vector3.up * mX);
+        if (rotBodyWithMouse)
+        {
+            transform.Rotate(Vector3.up * mX);
+        }
+        else
+        {
+            cam.transform.transform.Rotate(Vector3.up * mX);
+        }
     }
 }

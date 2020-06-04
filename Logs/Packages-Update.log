@@ -43,3 +43,23 @@ The following packages were added:
   com.unity.textmeshpro@2.0.1
   com.unity.timeline@1.2.14
   com.unity.ugui@1.0.0
+
+=== Tue Jun  2 23:16:02 2020
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.package-manager-ui@2.0.7
+  com.unity.postprocessing@2.2.1
+
+=== Tue Jun  2 23:40:34 2020
+
+Packages were changed.
+Update Mode: resetToDefaultDependencies
+
+The following packages were removed:
+  com.unity.package-manager-ui@2.0.7
+  com.unity.postprocessing@2.2.1
+  com.unity.probuilder@4.2.3
+  com.unity.progrids@3.0.3-preview.6

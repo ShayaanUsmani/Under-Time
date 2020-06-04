@@ -12,24 +12,29 @@ public class SlikkerWallRide : MonoBehaviour
     private PlayerMovement playerMovement;
 
     private Rigidbody rb;
+    private float minWallRideVelMag = 0.1f;
+
+    private float wallRideBonusVel = 25f;
 
     private GameObject ridableObject;
 
     private bool isRiding;
 
-    private float startRidingYPos;
-
     private float gravity = 9.81f;
 
-    private void Start()
+    private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
     }
     private void Update()
     {
-        if (!playerMovement.isGrounded && ridableObject!=null && Input.GetKey(playerMovement.jumpKey))
+        if (!playerMovement.isGrounded 
+            && ridableObject!=null 
+            && Input.GetKey(playerMovement.jumpKey)
+            && rb.velocity.magnitude > minWallRideVelMag)
         {
+            Debug.Log("velocity mag:" + rb.velocity.magnitude); ///////////////////////////////////////////////
             isRiding = true;
         }
         else if (Input.GetKeyDown(playerMovement.jumpKey) || ridableObject == null)
@@ -44,9 +49,8 @@ public class SlikkerWallRide : MonoBehaviour
         if (isRiding)
         {
             rb.AddForce(Vector3.up * gravity, ForceMode.Acceleration);
-            playerMovement.yVel = 0;
+            rb.AddForce(transform.forward * wallRideBonusVel, ForceMode.VelocityChange);
             //transform.Translate(transform.position.x, startRidingYPos, transform.position.z);
-            Debug.Log(startRidingYPos);
 
         }
         else
@@ -60,8 +64,6 @@ public class SlikkerWallRide : MonoBehaviour
         if(collision.collider.tag == environmentTag)
         {
             ridableObject = collision.gameObject;
-            startRidingYPos = transform.position.y;
-            Debug.Log(transform.position);
         }
     }
 
